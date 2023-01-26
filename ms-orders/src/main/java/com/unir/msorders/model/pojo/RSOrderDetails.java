@@ -1,8 +1,4 @@
 package com.unir.msorders.model.pojo;
-
-import java.time.LocalDate;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,31 +15,32 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orderdetails")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-
-public class RSOrders {
-
+public class RSOrderDetails {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderid;
+    private Long odid;
 
     @ManyToOne
-    @JoinColumn(name = "clientid", referencedColumnName = "clientid")
-    private RSClient rsclient;
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid")
+    private RSOrders rsorder;
 
-    @Column(name = "paymentmethod")
-    private String paymentmethod;
+    @Column(name = "productid")
+    private String productid;
 
-    @Column(name = "paidflag")
-    private boolean paidflag;
+    @Column(name = "qty")
+    private float qty;
 
-    @Column(name = "creationdate")
-    private LocalDate creationdate;   
+    @Column(name = "subtotal")
+    private float subtotal;
 
+    @Column(name = "iva")
+    private float iva;
 }

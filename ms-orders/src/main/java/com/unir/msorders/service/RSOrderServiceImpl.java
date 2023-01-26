@@ -22,11 +22,15 @@ public class RSOrderServiceImpl implements RSOrderService {
     @Autowired
     private RSClientRepository clientRepository;
 
-    @Override
-    public List<RSOrders> findByClientID(String clientid) {
+    // @Autowired
+    // private RSOrderdetailsRepository orderdetailsRepository;
 
-        //RSClient rsclient = clientRepository.findById(Long.valueOf(clientid)).orElse(null);
-        List<RSOrders> data = repository.findBy(null, null)
+    @Override
+    public List<RSOrders> findByRsclient(String clientid) {
+
+        RSClient rsclient = clientRepository.findById(Long.valueOf(clientid)).orElse(null);
+        List<RSOrders> data = repository.findByRsclient(rsclient);
+        //data.forEach(n -> n.setRsorderdetails(orderdetailsRepository.findByRsorder(n)));        
         return data;
     }
 
@@ -43,7 +47,7 @@ public class RSOrderServiceImpl implements RSOrderService {
             && StringUtils.hasLength(request.getPaymentmethod())
         ) {
             RSOrders rsOrder = RSOrders.builder()
-                .clientid(request.getClientid())
+                .rsclient(request.getClientid())
                 .paymentmethod(request.getPaymentmethod())
                 .paidflag(true)
                 //.creationdate(creationdate: LocalDate.now())

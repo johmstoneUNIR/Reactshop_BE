@@ -7,7 +7,7 @@ import com.unir.msorders.model.request.CreateRSOrder;
 
 public interface RSOrderService {
     
-    List<RSOrders> findByClientID(String clientid);
+    List<RSOrders> findByRsclient(String clientid);
 
     RSOrders getRSOrder(String orderid);
 
