@@ -32,8 +32,9 @@ public class RSOrderDetails {
     @JoinColumn(name = "orderid", referencedColumnName = "orderid")
     private RSOrders rsorder;
 
-    @Column(name = "productid")
-    private String productid;
+    @ManyToOne
+    @JoinColumn(name = "productid", referencedColumnName = "productid")
+    private Product product;
 
     @Column(name = "qty")
     private float qty;

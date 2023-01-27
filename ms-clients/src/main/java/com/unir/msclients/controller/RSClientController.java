@@ -37,7 +37,7 @@ public class RSClientController {
     @GetMapping("/clients/{ClientID}")
     public ResponseEntity<RSClient> getProduct(@PathVariable String ClientID) {
 
-        log.info("Request received for product {}", ClientID);
+        log.info("Request received for client {}", ClientID);
         RSClient rsclient = service.getRSClient(ClientID);
 
         if(rsclient != null){

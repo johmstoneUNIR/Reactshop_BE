@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateRSOrder { 
-    private String clientid;
-    private String paymentmethod;
-    private String paidflag;
+public class CreateRSOrderDetail {
+    public String productid;
+    private float qty;
+    private float subtotal;
+    private float iva;
 }

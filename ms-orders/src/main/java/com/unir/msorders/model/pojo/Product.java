@@ -1,14 +1,10 @@
 package com.unir.msorders.model.pojo;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,31 +14,28 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "products")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-
-public class RSOrders {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long orderid;
+    private Long productid;
+    
+    @Column(name = "name", unique = true)
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "clientid", referencedColumnName = "clientid")
-    private RSClient rsclient;
+    @Column(name = "price")
+    private Float price;
 
-    @Column(name = "paymentmethod")
-    private String paymentmethod;
+    @Column(name = "imageurl")
+    private String imageurl;
 
-    @Column(name = "paidflag")
-    private boolean paidflag;
-
-    @Column(name = "creationdate")
-    private LocalDate creationdate;   
-
+    @Column(name = "isvisible")
+    private boolean isvisible;
 }
